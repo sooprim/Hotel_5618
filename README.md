@@ -133,15 +133,10 @@ All endpoints return appropriate error messages for:
 
 ## Screenshots
 
-### Unit Tests
-![Unit Tests Results](Screens/UnitTests.PNG)
+You can find the application screenshots in the following locations:
 
-### Room Management
-![Room Management](Screens/Rooms/RoomsList.PNG)
-![Room Details](Screens/Rooms/RoomDetails.PNG)
-
-### Guest Management
-![Guest Management](Screens/Guests/GuestsList.PNG)
-![Guest Details](Screens/Guests/GuestDetails.PNG)
+- Unit Tests Results: `Screens/UnitTests.PNG`
+- Guest Management Screenshots: `Screens/Guests/` folder
+- Room Management Screenshots: `Screens/Rooms/` folder
 
 Jovan Tone 5618 
