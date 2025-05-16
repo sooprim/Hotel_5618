@@ -135,8 +135,8 @@ All endpoints return appropriate error messages for:
 
 You can find the application screenshots in the following locations:
 
-- Unit Tests Results: `Screens/UnitTests.PNG`
-- Guest Management Screenshots: `Screens/Guests/` folder
-- Room Management Screenshots: `Screens/Rooms/` folder
+- [Unit Tests Results](https://github.com/sooprim/Hotel_5618/blob/main/Screens/UnitTests.PNG)
+- [Guest Management Screenshots](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Guests)
+- [Room Management Screenshots](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Rooms)
 
 Jovan Tone 5618 
