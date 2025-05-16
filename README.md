@@ -1,138 +1,147 @@
-# Hotel Room Management Application
+# Hotel Web Application
 
-This project is a .NET 8.0 Web API application for managing hotel rooms and guests. It follows a clean layered architecture with the Service-Repository pattern and includes comprehensive unit testing.
+This project is a proof-of-concept web application for managing a hotel's rooms and guests. It is built with .NET 8.0 and follows clean architecture principles. The application includes full support for managing room and guest data, handling check-ins and check-outs, and maintaining proper room occupancy tracking.
 
 ## Technology Stack
 
-- ASP.NET Core 8.0 Web API
-- Entity Framework Core (Code First)
+- ASP.NET Core Web API
+- Entity Framework Core
 - SQL Server
 - AutoMapper
 - xUnit for testing
-- Service-Repository Pattern
+- Clean (Layered) Architecture
 
 ## Project Structure
 
+- WebApi - Contains API controllers and the application entry point
+- Service - Business logic, validation, and DTOs
+- Data - Entity Framework Core context and entity models
+- Tests - Unit and integration tests
+
+## Features
+
+### 1. Room Management
+
+- Create, read, update, and delete rooms
+- Validation:
+  - Number is required (unique room identifier)
+  - Floor is required (integer value)
+  - Type is required (Single, Double, Suite, etc.)
+- Handles errors with user-friendly messages
+
+### 2. Guest Management
+
+- Create, read, update, and delete guests
+- Validation:
+  - FirstName is required (max 200 characters)
+  - LastName is required (max 400 characters)
+  - DateOfBirth is required
+  - Address is required (max 600 characters)
+  - Nationality is required
+  - CheckInDate and CheckOutDate are required
+  - RoomId must reference an existing room
+- Includes proper error handling
+
+### 3. Room Assignment
+
+- Assign guests to rooms with validation
+- Prevents double-booking of rooms
+- Example format:
+
+```json
+{
+  "firstName": "Jovan",
+  "lastName": "Tone",
+  "dateOfBirth": "2004-04-28",
+  "address": "Street 21, Temecula",
+  "nationality": "American",
+  "checkInDate": "2025-05-15",
+  "checkOutDate": "2025-05-20",
+  "roomId": 1
+}
 ```
-HotelManagement/
-├── src/
-│   ├── HotelManagement.WebApi/        # API Controllers and entry point
-│   ├── HotelManagement.Service/       # Business logic, DTOs, and Services
-│   └── HotelManagement.Data/          # EF Core, Entities, and Repositories
-└── tests/
-    └── HotelManagement.Tests/         # Unit Tests
+
+### 4. Room Availability
+
+- Check room availability for specific dates
+- Validates date ranges
+- Returns available rooms with their details
+- Meaningful error messages for invalid requests
+
+Example response:
+
+```json
+[
+  {
+    "id": 1,
+    "number": "101",
+    "floor": 1,
+    "type": "Single",
+    "isAvailable": true
+  },
+  {
+    "id": 2,
+    "number": "102",
+    "floor": 1,
+    "type": "Double",
+    "isAvailable": false
+  }
+]
 ```
-
-## Entities
-
-### Guest
-- Properties:
-  - Id (PK, auto-generated)
-  - FirstName (required, max 200 chars)
-  - LastName (required, max 400 chars)
-  - DateOfBirth (required)
-  - Address (required, max 600 chars)
-  - Nationality (required)
-  - CheckInDate (required)
-  - CheckOutDate (required)
-  - RoomId (FK to Room)
-
-### Room
-- Properties:
-  - Id (PK, auto-generated)
-  - Number (required)
-  - Floor (required)
-  - Type (required)
-  - Guests (navigation property)
-
-## Key Features
-
-1. Complete CRUD operations for both Guest and Room entities
-2. Data persistence using Entity Framework Core
-3. Service-Repository pattern implementation
-4. DTOs for data transfer
-5. Dependency Injection and Inversion of Control
-6. Comprehensive unit testing
 
 ## API Endpoints
 
-### Guests
-- GET /api/guests - Get all guests
-- GET /api/guests/{id} - Get guest by ID
-- POST /api/guests - Create a new guest
-- PUT /api/guests/{id} - Update a guest
-- DELETE /api/guests/{id} - Delete a guest
-
 ### Rooms
-- GET /api/rooms - Get all rooms
-- GET /api/rooms/{id} - Get room by ID
-- POST /api/rooms - Create a new room
-- PUT /api/rooms/{id} - Update a room
-- DELETE /api/rooms/{id} - Delete a room
 
-## Project Components
+- GET /api/Rooms - Get all rooms
+- GET /api/Rooms/{id} - Get a room by ID
+- POST /api/Rooms - Create a new room
+- PUT /api/Rooms/{id} - Update a room
+- DELETE /api/Rooms/{id} - Delete a room
 
-### Interfaces
-- `IGuestRepository`
-- `IRoomRepository`
-- `IGuestService`
-- `IRoomService`
+### Guests
 
-### DTOs
-- `GuestDto`
-- `RoomDto`
-- `CreateGuestDto`
-- `UpdateGuestDto`
-- `CreateRoomDto`
-- `UpdateRoomDto`
-
-### Services
-- `GuestService`
-- `RoomService`
-
-### Repositories
-- `GuestRepository`
-- `RoomRepository`
-
-## Unit Testing
-
-The solution includes comprehensive unit tests for both services:
-
-### GuestService Tests (minimum 3)
-- Test guest creation
-- Test guest retrieval
-- Test guest update
-
-### RoomService Tests (minimum 3)
-- Test room creation
-- Test room retrieval
-- Test room update
+- GET /api/Guests - Get all guests
+- GET /api/Guests/{id} - Get a guest by ID
+- POST /api/Guests - Create a new guest
+- PUT /api/Guests/{id} - Update a guest
+- DELETE /api/Guests/{id} - Delete a guest
 
 ## Database Setup
 
-1. Update the connection string in `appsettings.json`
-2. Run Entity Framework migrations:
-```bash
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
-## Running the Application
-
-1. Clone the repository
-2. Update the connection string
-3. Run the migrations
-4. Start the application:
-```bash
-dotnet run --project src/HotelManagement.WebApi
-```
+- Ensure SQL Server is running
+- Run the `Hotel_DB.sql` script in Microsoft SQL Server Management Studio to create and populate the database
+- Update the connection string in appsettings.json if necessary
+- The database will be ready with sample rooms and guests
 
 ## Running Tests
+
+To run all tests, use:
 
 ```bash
 dotnet test
 ```
 
----
+## Error Handling
 
-**Jovan Tone 5618** 
+All endpoints return appropriate error messages for:
+
+- Invalid input data
+- Missing or non-existent resources
+- Room booking conflicts
+- Database constraint violations
+
+## Screenshots
+
+### Unit Tests
+![Unit Tests Results](Screens/UnitTests.PNG)
+
+### Room Management
+![Room Management](Screens/Rooms/RoomsList.PNG)
+![Room Details](Screens/Rooms/RoomDetails.PNG)
+
+### Guest Management
+![Guest Management](Screens/Guests/GuestsList.PNG)
+![Guest Details](Screens/Guests/GuestDetails.PNG)
+
+Jovan Tone 5618 
