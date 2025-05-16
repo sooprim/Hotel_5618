@@ -136,8 +136,8 @@ All endpoints return appropriate error messages for:
 
 In the following locations are screenshots of the successful endpoint requests and responses:
 
-- [Unit Tests](https://github.com/sooprim/Hotel_5618/blob/main/Screens/UnitTests.PNG)
 - [Guests](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Guests)
 - [Rooms](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Rooms)
+- [Unit Tests](https://github.com/sooprim/Hotel_5618/blob/main/Screens/UnitTests.PNG)
 
 Jovan Tone 5618 
