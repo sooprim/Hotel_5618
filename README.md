@@ -121,6 +121,7 @@ To run all tests, use:
 ```bash
 dotnet test
 ```
+Alternatively, in Visual Studio 2022, click on Tests -> Run All Tests.
 
 ## Error Handling
 
@@ -133,10 +134,10 @@ All endpoints return appropriate error messages for:
 
 ## Screenshots
 
-You can find the application screenshots in the following locations:
+In the following locations are screenshots of the successful endpoint requests and responses:
 
-- [Unit Tests Results](https://github.com/sooprim/Hotel_5618/blob/main/Screens/UnitTests.PNG)
-- [Guest Management Screenshots](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Guests)
-- [Room Management Screenshots](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Rooms)
+- [Unit Tests](https://github.com/sooprim/Hotel_5618/blob/main/Screens/UnitTests.PNG)
+- [Guests](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Guests)
+- [Rooms](https://github.com/sooprim/Hotel_5618/tree/main/Screens/Rooms)
 
 Jovan Tone 5618 
